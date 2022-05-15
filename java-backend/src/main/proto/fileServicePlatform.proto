@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package xyz.yingshaoxo.fileServicePlatform.grpc.main;
+
+option java_multiple_files = true;
+option java_package = "xyz.yingshaoxo.fileServicePlatform.grpc.main";
+option java_outer_classname = "HelloWorldProto";
+
+service MyService {
+  rpc SayHello (HelloRequest) returns (HelloReply) { }
+
+  rpc UploadFile (UploadRequest) returns (UploadResponse) { }
+
+  rpc DownloadFile (DownloadRequest) returns (DownloadResponse) { }
+
+  rpc DeleteFile (DeleteRequest) returns (DeleteResponse) { }
+
+  rpc GetFileList (GetFileListRequest) returns (GetFileListResponse) { }
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+  string message = 1;
+}
+
+message UploadRequest {
+  bytes file = 1;
+  string fileName = 2;
+}
+
+message UploadResponse {
+  bool success = 1;
+  string url = 2;
+}
+
+message DownloadRequest {
+  string fileName = 1;
+}
+
+message DownloadResponse {
+  bytes file = 1;
+  string fileName = 2;
+}
+
+message GetFileListRequest {
+
+}
+
+message GetFileListResponse {
+  repeated string fileName = 1;
+}
+
+
+message DeleteRequest {
+  string fileName = 1;
+}
+
+message DeleteResponse {
+  bool success = 1;
+}
